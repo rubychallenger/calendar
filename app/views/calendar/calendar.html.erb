@@ -1,0 +1,45 @@
+<%= render 'header' %>
+
+<div class="row"> <hr> </div> 
+<div class="row">
+  <div class="small-12 columns">
+
+    <div class="show-for-large-up large-2 large-push-10 columns">
+      <%= render 'recent' %>   
+    </div>
+
+    <div class="show-for-medium-up medium-12 large-10 large-pull-2 columns">
+      <%= render 'calendar' %>
+    </div>
+
+    <div class="show-for-small-only small-12 columns">
+      <div class="row">
+        <div class= "small-12 columns" style="clear: right; display: block;">          
+          <div class="header" style="clear: right; display: block;">
+            <a href="#" class="left fi-arrow-left" style="color: #007ABA;"> </a>
+            <%= Date.today.strftime("%A") %>, <%= Date.today.strftime("%e") %>
+            <a href="#" class="right fi-arrow-right" style="color: #007ABA;"> </a>
+          </div>         
+        </div>
+      </div>
+
+      
+      <% @eps[Time.now.day].each do |ep|%>
+        <div class="row">
+          <div class="small-12 columns">
+            <div class="calsmall">
+                <p class="<%= ep.title.name %> <%= "highlighted" if cookies[:highlight] && cookies[:highlight].split(',').include?(ep.title.name) %>">
+                  <span style="font-weight: 700;line-height: 1.5em;"><%= ep.title.name %> </span>
+                  <%= link_to "","/set_cookies/#{ep.title.name}",remote: true, class: set_icon(ep) %> </br> 
+                  <span style="line-height: .9em;font-size: 90%;"> Episode <%= ep.number %></span>
+                  <span style="float:right;padding-right: 3px;font-size: 80%;"><%= ep.airdate.strftime("%H:%M") %></span> 
+                </p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    
+    </div>
+
+  </div>
+</div>

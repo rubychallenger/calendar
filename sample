@@ -1,0 +1,13 @@
+#sample
+
+i=0
+k=(rand * 7).to_i
+t=(rand * 24).to_i
+4.times do 
+	i+=1
+	Episode.create(name: Faker::Name.title,
+                 season: 1,
+                 number: i,
+                 title_id: 2,
+                 airdate: "2015-3-#{k+7*i} #{t}:00:00")
+end

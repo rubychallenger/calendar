@@ -1,0 +1,21 @@
+<div class="row" style="margin-top:1px;"> 
+  <div class="small-12 columns"> 
+    <div class="header" style="margin: 0 ;">Recent</div> 
+  </div>
+</div>
+
+  <% @recent.each do |rec| %>
+    <div class="row"> 
+      <div class="small-12 columns">
+        <div class="recent <%= rec.title.name %>rec <%= "shadow" if cookies[:highlight] && cookies[:highlight].split(',').include?(rec.title.name) %>"> 
+          <%= image_tag image_path(rec.title.picture)%>  
+          <div class="mask"> 
+            <a href="#" class="info" title="Full Image">Full Image</a>   
+          </div> 
+          <div class="numb">
+            <p> Season <%= rec.season %> Ep. <%= rec.number %> </p>
+          </div>
+        </div> 
+      </div> 
+    </div>
+  <% end %>  

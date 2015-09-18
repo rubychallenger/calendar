@@ -1,0 +1,147 @@
+<div class="contain-to-grid">
+    <nav class="top-bar" data-topbar role="navigation">
+
+      <ul class="title-area">
+        <li class="name">
+          <h1><%= link_to root_path do %>
+              &nbsp;SAMPLE
+            <% end %></h1>
+        </li>
+        <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
+      </ul>
+
+      <section class="top-bar-section">
+      <!-- Right Nav Section -->
+        <ul class="right">
+          <li><%= link_to 'IMAGES', '#', class: "rightlink drpdwn" %></li>
+          <li><%= link_to 'PROJECTS', '#', class: "rightlink" %></li>
+          <li><%= link_to 'BOOKS', '#', class: "rightlink" %></li>
+          <!--  <li><a class="rightlink" href="#">PHOTOS</a></li> -->
+
+          <li class='show-for-small-only'><a class="fi-social-facebook rightlink rightpad">&nbsp;<span style="font-size: 15px;">Facebook</span></a></li>
+          <li class='hide-for-small-only'><a class="fi-social-facebook rightlink rightpad"></a></li>
+            <!-- <li id="topicon"><a class="fi-social-twitter" href="#"></a></li> -->
+
+            <!-- <li id="topicon"><a class="fi-social-instagram"></a></li> -->
+
+            <li class='show-for-small-only'><a class="fi-social-github rightlink rightpad">&nbsp;<span style="font-size: 15px; ">Git</span></a></li>
+            <li class='hide-for-small-only'><a class="fi-social-github rightlink rightpad">&nbsp;</a></li>
+          
+        </ul>
+
+      <!-- Left Nav Section -->
+        
+      </section>
+    </nav>
+
+</div>
+<!-- navigation bar end -->
+
+<%= render 'image_line', collection: @tr %>
+<!-- end of application part1 before merging -->
+
+
+<div class="tabs-content">
+  <div class="content active" id="panel1">
+    <div class="row" style="margin-top:40px;">
+      <div class="small-11 medium-11 large-9 small-centered medium-centered large-uncentered columns">
+        <div class="small-12 columns">
+        <div class="row">
+          <div class='wrap'>
+        
+          <div class="small-12 medium-6 columns">
+            <div class="show-for-medium-down" style="height:100%; width:100%; position:absolute; left:0 ; border:10px solid white; z-index: 3;"></div>
+            <div class="show-for-small-only" style="height:10px;"></div>
+            <%= image_tag @all.first.image_url, style: "width:100%;padding-right: 8.5px; height: auto;max-height: 260px;"%>
+
+          </div>
+          <div class="small-12 medium-6 columns">
+            <div class="show-for-medium-down" style="height:100%; width:100%; position:absolute; left:0 ; border:10px solid white; z-index: 3;"></div>
+            <a class="sidemenu" style="margin-left: 10px;top:20px;position: relative;font-size: 1.5em;" href="#"><%= truncate(@all.first.title,length: 25, omission: '')%> </a>
+       
+            <p class="show-for-large-up" style="margin: 30px 10px 0 10px;"><%= truncate(@all.first.desc,length: 100, omission: '') %> <%= link_to '[...]', '', class: "read-more-#{@all.first.id}" %>
+                <script>
+                  $('.read-more-<%= @all.first.id %>').on('click', function(e) {
+                    e.preventDefault()
+                    $(this).parent().html('<%= escape_javascript @all.first.desc %>')
+                  })
+                </script>
+              </p>
+       
+            <div class="postimg" style="margin: 30px 0 0 17px;">
+              <p><a class="fi-calendar linkpost" href="#"> <%= @all.first.created_at.strftime("%m-%d-%Y") %></a></p>
+            </div>
+          </div>
+          </div>
+          </div>
+
+          <% if @all.length > 1 %>
+            <div class="row" style="margin-top :20px;">
+              <div class="small-12 medium-12 small-centered columns" >
+                <ul class="small-block-grid-2 medium-block-grid-4">
+                  <% (1..[(@all.length-1),4].min).each do |ind| %>
+                    <li><div><%= image_tag @all[ind].image_url, style: "width: 100%; height:auto; "%></div><div style="height:10px;"></div> <a href="#"><p class="sidemenu" title="<%= @all[ind].title %>" ><%= truncate(@all[ind].title,length: 20, omission: '[...]') %></p></a> </li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+          <% end %>
+
+          <% if @all.length > 5 %>
+          <div class="row">
+              <div class="button round moreposts">More posts</div>
+          </div>
+          <% end %>
+
+        </div>
+      </div> 
+
+
+
+
+        <div class="large-3 columns end" >
+          <!-- <div class="large-2 columns"></div>-->
+          <div class="large-10 large-offset-2 columns">
+          <nav id="menu" role="navigation" class="hide-for-medium-down">
+            <ul id="mainNav" class="nav-bar no-bullet">
+              <li>
+          <div class="row">
+            <div style="border-top: 2px solid rgba(40,50,70,0.3);">
+                <ul class="square" style="width:100%; margin: 0 auto 30px auto;list-style-position: inside;"><span style="padding-top:4px;border-top: 2px solid rgba(40,50,70,0.8);"> <img src="http://images2.fanpop.com/image/photos/10800000/My-Hero-human-anatomy-10858064-1600-1200.jpg"></span> 
+                </ul>
+              </div>
+        </div>
+      </li>
+      <li>
+        <div class="row">
+          <div style="border-top: 2px solid rgba(40,50,70,0.3);">
+            <ul class="square" style="width:100%; margin: 0 auto 30px auto;list-style-position: inside;"><span class="fi-comment" style="border-top: 2px solid rgba(40,50,70,0.8);padding-top:4px;"></span><span style="padding-top:4px;border-top: 2px solid rgba(40,50,70,0.8);"> Contacts:</span> 
+              <li><a class="sidemenu" href="#"><strong>FirstName LastName</strong></a></li>
+              <li><a class="sidemenu" href="#">Phone:(000) 000-0000</a></li>
+              <li><a class="sidemenu" href="#">Email: myemail@gmail.com</a></li>
+              <li><a class="sidemenu" href="#">Skype: my_skype</a></li>
+            </ul>
+          </div>
+        </div>
+      </li>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- application part2 start when mergin -->
+ <footer>
+        <div style="background:rgba(40,60,70,1);">
+          <div class="row" style="padding:0;">
+            <div class="small-8 medium-12 small-centered columns" >
+                <p style="text-align: center; margin-top: 20px; ">
+                    <a class="link" href="#">Some amazing footer.</a>
+                </p> 
+            </div>
+          </div>
+        </div>
+      </footer>
+
+  </body>
+</html>

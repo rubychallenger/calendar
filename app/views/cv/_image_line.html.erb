@@ -1,0 +1,23 @@
+<div class="backgroundimage">
+  <div style="height:15px;"></div>
+
+   <div class="row">
+    <div class="small-centered small-11 medium-11 large-12 columns">
+      <ul class="small-block-grid-3 medium-block-grid-4 large-block-grid-5 imagegrid">
+        <% @tr.each_with_index do |el,index| %>
+          <% if index<3 %>
+            <li><div><%=  %>  <%= image_tag el.split('/').last(2).join('/') %></div></li>
+          <% elsif index == 3 %>
+            <li><div class="hide-for-small-only"><%= image_tag el.split('/').last(2).join('/') %></div></li>
+          <% elsif index == 4 %>
+            <li><div class="hide-for-medium-down"><%= image_tag el.split('/').last(2).join('/') %></div></li>
+          <% else %>
+            <li><div class="hiddenImage"><%= image_tag el.split('/').last(2).join('/') %></div></li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <div class="hide-for-small-only" style="height:30px;"></div>
+  
+</div>

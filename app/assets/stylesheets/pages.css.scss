@@ -1,0 +1,74 @@
+// Place all the styles related to the pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.pagesindex {
+    background-color: transparent;
+    background-repeat: repeat, no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    -webkit-background-size: auto, cover;
+    -moz-background-size: auto, cover;
+    -o-background-size: auto, cover;
+    background-size: auto, cover;
+    color: #fff;
+    font-family: 'Josefin Slab', Arial, sans-serif;
+    font-size: 13px;
+    background-image: url(http://upload.wikimedia.org/wikipedia/commons/2/22/Lightning_3025.jpg);
+
+.bmenu {
+  -webkit-transform: translateY(50%);
+  -ms-transform: translateY(50%);
+  transform: translateY(50%);
+  padding: 0px;
+  font-weight: 100;
+  margin: auto;
+  position: relative;
+  //background: rgba(0,0,0,0.7);
+  width: 500px;
+  -webkit-transition: background-color 0.5s ease-in-out;
+  -moz-transition: background-color 0.5s ease-in-out;
+  -o-transition: background-color 0.5s ease-in-out;
+  -ms-transition: background-color 0.5s ease-in-out;
+  transition: background-color 0.5s ease-in-out;
+}
+
+.bmenu li{
+    font-size: 40px;
+    display: block;
+
+    line-height: 66px;
+}
+.bmenu li a{
+
+    white-space: nowrap;
+    color: transparent;
+    display: block;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 0px 0px 3px #fff;
+    letter-spacing: 1px;
+    -moz-transform: scale(0.8); 
+    -ms-transform: scale(0.8); 
+    -o-transform: scale(0.8); 
+    -webkit-transform: scale(0.8); 
+    transform: scale(0.8);
+    -webkit-transition: all 0.4s linear;
+    -moz-transition: all 0.4s linear;
+    -o-transition: all 0.4s linear;
+    -ms-transition: all 0.4s linear;
+    transition: all 0.4s linear;
+} 
+.bmenu li a:hover{
+    text-shadow: none;
+    color: #fff;
+    background: rgba(129,6,29,0.8);
+    -moz-transform: scale(1); 
+    -ms-transform: scale(1); 
+    -o-transform: scale(1); 
+    -webkit-transform: scale(1); 
+    transform: scale(1); 
+}
+
+
+}

@@ -1,0 +1,31 @@
+<div class="row">
+  <ul class="small-block-grid-7">
+    <% ["Mon","Tue","Wed","Th","Fri","Sat","Sun"].each do |day| %>
+      <li> <h1> <%= day %> </h1> </li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="row">    
+
+  <ul class="small-block-grid-7">
+    <% (Date.today.at_beginning_of_month.wday == 0 ? 6 : (Date.today.at_beginning_of_month.wday - 1) ).times do %>
+        <li><p></p></li>
+    <% end %> 
+
+    <% (1..Time.days_in_month(Time.now.month, Time.now.year)).each do |date| %>
+      <li class="cal">
+        <h2><%= date %> </h2>
+        <% @eps[date].each do |ep| %>
+          <p class="<%= ep.title.name %> <%= "highlighted" if cookies[:highlight] && cookies[:highlight].split(',').include?(ep.title.name) %>">
+            <span style="font-weight: 700;line-height: 1.5em;" title=<%= ep.title.name if ep.title.name.length>10 %>><%= truncate ep.title.name, length: 12, omission: ".." %> </span>
+            <%= link_to "","/set_cookies/#{ep.title.name}",remote: true, class: set_icon(ep) %> </br> 
+            <span style="line-height: .9em;font-size: 90%;"> Episode <%= ep.number %></span>
+            <span style="float:right;padding-right: 3px;font-size: 80%;"><%= ep.airdate.strftime("%H:%M") %></span> 
+          </p>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+
+</div>
