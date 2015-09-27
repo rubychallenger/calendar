@@ -12,19 +12,12 @@
   </div>
 
   <div class="large-6 medium-4 small-12 columns" style="text-align: center;">
-    <div class="row">
-      <div class="small-3 columns small-offset-3">
-        <div class="small-6 columns">
           <% if admin_signed_in? %>
-            <%= button_to 'Admin page', titles_path, method: :get, class: "button tiny" %>
+            <%= link_to 'Admin page', titles_path, class: "button tiny" %>
           <% end %>
-        </div>
-
-        <div class="small-3 columns ends">
           <%= link_to 'Home', calendar_path, class: "button tiny" %>
-        </div>
-      </div>
-    </div>
+          <%= link_to '', 'https://github.com/rubychallenger/calendar', class: 'fi-social-github button tiny', title: 'Github link', :target => "_blank"%>
+    
   </div>
 
   <div class="large-3 medium-4 hide-for-small-only columns ends">
