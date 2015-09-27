@@ -70,9 +70,16 @@ class TitlesController < ApplicationController
     apikey = "40B65899C751376C"
     response = HTTParty.get("http://thetvdb.com/api/GetSeries.php?seriesname=#{@title.name.gsub(' ','%20')}").to_hash
 
+    #puts response
     unless response.empty?
-      resp = response["Data"]["Series"].is_a?(Hash) ? response["Data"]["Series"] : response["Data"]["Series"].select {|series| series["SeriesName"] == "#{@title.name}"}[0]
-
+      resp = response["Data"]["Series"].is_a?(Hash) ? response["Data"]["Series"] : response["Data"]["Series"].select {|series| series["SeriesName"] == "#{@title.name}" }[0]
+      
+      if resp.is_a? NilClass
+        resp = response["Data"]["Series"].delete_if {|series| series["FirstAired"].is_a? NilClass }.max_by do |series|
+          DateTime.strptime((series["FirstAired"]),"%Y-%m-%d")
+        end
+      end
+      
       @title.update_attribute( :Api_id, resp["seriesid"]) if @title.Api_id == nil
     end
 
