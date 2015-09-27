@@ -20,10 +20,10 @@ $(document).ready(function() {
                     "overflow":"hidden"})
         }, function() {
             if ($(".wrap").is(":hover") == false) {
-                $('#tooltip-span').css("display","none");
+                $('#tooltip-span').html("").css("display","none");
             }
         });
     $('.wrap').mouseleave(function() {
-        $('#tooltip-span').css("display","none");
+        $('#tooltip-span').html("").css("display","none");
     })
 });
