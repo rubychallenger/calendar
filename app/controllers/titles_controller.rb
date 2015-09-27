@@ -79,13 +79,13 @@ class TitlesController < ApplicationController
           DateTime.strptime((series["FirstAired"]),"%Y-%m-%d")
         end
       end
-      
+
       @title.update_attribute( :Api_id, resp["seriesid"]) if @title.Api_id == nil
     end
 
     full_response = HTTParty.get("http://thetvdb.com/api/#{apikey}/series/#{@title.Api_id}/all/en.xml").to_hash["Data"]
 
-    @title.update_attribute(:name, full_response["Series"]["SeriesName"])
+    @title.update_attribute(:name, full_response["Series"]["SeriesName"].gsub(/[^a-zA-Z ]/,''))
     @title.update_attribute(:picture, "http://thetvdb.com/banners/" + full_response["Series"]["fanart"])
     @title.update_attribute(:overview, full_response["Series"]["Overview"])
     

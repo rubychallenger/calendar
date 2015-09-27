@@ -1,3 +1,11 @@
+.wrap {
+  position:relative;
+}
+
+.wrap span, .loginscr {
+  display:none;
+}
+
 .view {
    float: left;
    border: 1px solid black;

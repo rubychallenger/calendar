@@ -1,9 +1,15 @@
 .calendarcalendar, .titlesindex, .titlesshow {
+
   background-color: #17181A;
   font-family: 'Josefin Slab', Arial, sans-serif;
   font-size: 13px;
   color: #fff;
-  
+   
+  select option {
+    background-color: black;
+    color: white;
+  }
+
   h1 {
     font-family: 'Josefin Slab', Arial, sans-serif;
     font-size: 2em;

@@ -4,14 +4,12 @@
   </div>
 </div>
 
-<ul class="small-block-grid-6">
+<ul class="small-block-grid-5">
   <% @recent.each do |rec| %>
-    <li style="margin: 0 10px;">
-        <div class="recent <%= rec.title.name.gsub(' ','')%>rec <%= "shadow" if cookies[:highlight] && cookies[:highlight].split(',').include?(rec.title.name) %>"> 
+    <li>
+        <div class="recent <%= rec.title.name.gsub(' ','')%>rec <%= "shadow" if cookies[:highlight] && cookies[:highlight].split(',').include?(rec.title.name) %>" style="width: 95%;"> 
           <%= image_tag image_path(rec.title.picture)%>  
-          <div class="mask"> 
-            <a href="#" class="info" title="Full Image">Full Image</a>   
-          </div> 
+          
           <div class="numb">
             <p> Season <%= rec.season %> Ep. <%= rec.number %> </p>
           </div>
