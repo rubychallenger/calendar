@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get 'show_form_episode' => 'calendar#show_form_episode'
   #patch 'edit_episode/:id' => 'calendar#update_episode'
   get 'refresh_API' => 'titles#refresh_API'
-  get 'calendar/show_popup/:name' => "titles#show_popup"
+  get 'show_popup/:name' => "titles#show_popup"
   #get 'refresh_test' => 'calendar#refresh_test'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

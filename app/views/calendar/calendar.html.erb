@@ -17,31 +17,34 @@
       <div class="row">
         <div class= "small-12 columns" style="clear: right; display: block;">          
           <div class="header" style="clear: right; display: block;">
-            <a href="#" class="left fi-arrow-left" style="color: #007ABA;"> </a>
-            <%= Date.today.strftime("%A") %>, <%= Date.today.strftime("%e") %>
-            <a href="#" class="right fi-arrow-right" style="color: #007ABA;"> </a>
+             &nbsp;<%= link_to "", calendar_path(move_day(-1)), class: "fi-arrow-left" %>  <%= @day %> <%= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][@wday.to_i] %>  <%= link_to "", calendar_path(move_day(+1)), class: "fi-arrow-right" %>
           </div>         
         </div>
       </div>
 
+      <div class="row">
+        <div class="small-12 columns">
+          
+          <div class="small-7 columns small-centered" style="height: 50px;">
+            <div class="row">
+      <% @eps[@day].each_with_index do |ep,index|%>
       
-      <% @eps[Time.now.day].each do |ep|%>
-        <div class="row">
-          <div class="small-12 columns">
-            <div class="calsmall">
-                <p class="<%= ep.title.name %> <%= "highlighted" if cookies[:highlight] && cookies[:highlight].split(',').include?(ep.title.name) %>">
-                  <span style="font-weight: bold ;line-height: 1.2em;"><%= ep.title.name %> </span>
-                  <%= link_to "","/set_cookies/#{ep.title.name}",remote: true, class: set_icon(ep) %> </br> 
-                  <span style="line-height: .9em;font-size: 90%;"> Episode <%= ep.number %></span>
-                  <span style="float:right;padding-right: 3px;font-size: 80%;"><%= ep.airdate.strftime("%H:%M") %></span> 
-                </p>
-            </div>
+        <div class="small-12 columns">
+        <div class="<%= ep.title.name.gsub(' ','') %> <%= "highlighted" if cookies[:highlight] && cookies[:highlight].split(',').include?(ep.title.name) %>" style="<%= "border-bottom: 1px solid black;" if @eps[@day].size - 1 == index %> <%= set_background(index) %>"> 
+          <div id="<%=ep.title.name.gsub(' ','_')%>" class="titlename" style="padding: 5px; border-radius: 5px;" >
+            <span id="span" style="font-weight: 700;line-height: 1.5em;"><%= ep.title.name %></span>
+            <%= link_to "","/set_cookies/#{ep.title.name}", remote: true, class: set_icon(ep), title: "Add to favourites", style: "color: white;" %> 
+            <span style="line-height: 1.5em; float: right; vertical-align: center;"> Ep: <%= ep.number %> (<%= ep.airdate.strftime("%H:%M") %>)</span>
+          </div>
+            
           </div>
         </div>
+        
       <% end %>
-    
+      </div>
+      </div>
     </div>
-
+  </div>
   </div>
 </div>
 

@@ -14,6 +14,8 @@ class CalendarController < ApplicationController
 
     @month = params[:month].is_a?(NilClass) ? Time.now.month : params[:month].to_i
     @year = params[:year].is_a?(NilClass) ? Time.now.year : params[:year].to_i
+    @day = params[:day].is_a?(NilClass) ? Time.now.day : params[:day].to_i
+    @wday = params[:wday].is_a?(NilClass) ? Time.now.strftime("%w") : params[:wday].to_i
 
     #puts @month
 

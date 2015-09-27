@@ -15,6 +15,11 @@ module CalendarHelper
 		(@month == 1) ? 12 : (@month - 1)
 	end
 
+	def move_day int
+		date = DateTime.strptime("#{@day}-#{@month}-#{@year}","%d-%m-%Y")+int.days
+		{year: date.year, month: date.month, day: date.day, wday: date.strftime("%w")}
+	end
+
 	def set_background(index)
 		if index % 2 == 0
 			"background-color: #343434"
