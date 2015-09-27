@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   devise_for :admins, :path => '', :controllers => {:sessions => 'sessions'}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-  root 'pages#index'
+  root 'calendar#calendar'
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
   get 'calendar' => 'calendar#calendar'

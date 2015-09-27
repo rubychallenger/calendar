@@ -1,6 +1,3 @@
-@import url(http://fonts.googleapis.com/css?family=Exo:100,200,400);
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
-
 .bod{
 	position: fixed;
 	top: -20px;
@@ -18,9 +15,8 @@
 
 .login{
 	position: absolute;
-	top: calc(50% - 105px);
-	left: calc(50% - 50px);
-	//height: 120px;
+	top: calc(50% - 100px);
+	left: calc(50% - 175px);
 	width: 350px;
 	padding: 10px;
 	z-index: 2;

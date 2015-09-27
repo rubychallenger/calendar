@@ -19,11 +19,11 @@ $(document).ready(function() {
                     "position":"fixed",
                     "overflow":"hidden"})
         }, function() {
-            if ($(".wrap").is(":hover") == false) {
+            if ($(".wrapp").is(":hover") == false) {
                 $('#tooltip-span').html("").css("display","none");
             }
         });
-    $('.wrap').mouseleave(function() {
+    $('.wrapp').mouseleave(function() {
         $('#tooltip-span').html("").css("display","none");
     })
 });

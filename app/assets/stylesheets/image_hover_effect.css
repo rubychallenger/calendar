@@ -1,8 +1,8 @@
-.wrap {
+.wrapp {
   position:relative;
 }
 
-.wrap span, .loginscr {
+.wrapp span, .loginscr {
   display:none;
 }
 
