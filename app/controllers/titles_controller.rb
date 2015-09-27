@@ -70,8 +70,6 @@ class TitlesController < ApplicationController
     apikey = "40B65899C751376C"
     response = HTTParty.get("http://thetvdb.com/api/GetSeries.php?seriesname=#{@title.name.gsub(' ','%20')}").to_hash
 
-    puts response.empty?
-    puts response
     unless response.empty?
       resp = response["Data"]["Series"].is_a?(Hash) ? response["Data"]["Series"] : response["Data"]["Series"].select {|series| series["SeriesName"] == "#{@title.name}"}[0]
 
@@ -80,6 +78,7 @@ class TitlesController < ApplicationController
 
     full_response = HTTParty.get("http://thetvdb.com/api/#{apikey}/series/#{@title.Api_id}/all/en.xml").to_hash["Data"]
 
+    @title.update_attribute(:name, full_response["Series"]["SeriesName"])
     @title.update_attribute(:picture, "http://thetvdb.com/banners/" + full_response["Series"]["fanart"])
     @title.update_attribute(:overview, full_response["Series"]["Overview"])
     
