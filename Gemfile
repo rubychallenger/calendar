@@ -28,7 +28,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'jquery-turbolinks', '~> 2.1.0'
-gem 'jquery-rails'
+gem 'jquery-rails', '4.0.5'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'sass-rails', '~> 5.0'
@@ -38,10 +38,12 @@ group :development do
 end
 
 group :production do
-	gem 'pg'
-	gem 'rails_12factor'
+	gem 'pg', '0.18.3'
+	gem 'rails_12factor', '0.0.3'
 end
 
 gem 'rails', '4.2.0'
-gem 'foundation-rails', '~> 5.5.1.1'
+gem 'foundation-rails'
 gem 'faker'
+gem 'devise', '3.5.2'
+gem 'httparty'

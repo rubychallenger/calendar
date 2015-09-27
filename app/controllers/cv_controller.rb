@@ -1,5 +1,9 @@
 class CvController < ApplicationController
   
+  def nil.image_url *args
+    nil
+  end
+
   def index
     @all = Book.all + Project.all
     @all.sort_by(&:created_at)

@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :titles, path: "/calendar/titles"
+
+  resources :episodes
+
+  devise_for :admins, :path => '', :controllers => {:sessions => 'sessions'}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   root 'pages#index'
@@ -6,6 +11,15 @@ Rails.application.routes.draw do
   # root 'welcome#index'
   get 'calendar' => 'calendar#calendar'
   get 'cv' => 'cv#index'
+  get 'calendar/show_all' => 'title#index'
+  #get 'edit_title/:id' => 'calendar#edit'
+  #patch 'edit_title/:id' => 'calendar#update'
+  get 'show_form_title' => 'calendar#show_form_title'
+  get 'show_form_episode' => 'calendar#show_form_episode'
+  #patch 'edit_episode/:id' => 'calendar#update_episode'
+  get 'refresh_API' => 'titles#refresh_API'
+  get 'calendar/show_popup/:name' => "titles#show_popup"
+  #get 'refresh_test' => 'calendar#refresh_test'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
   post 'select_time_zone' => 'calendar#select_time_zone'
@@ -25,7 +39,6 @@ Rails.application.routes.draw do
   #       get 'sold'
   #     end
   #   end
-
   # Example resource route with sub-resources:
   #   resources :products do
   #     resources :comments, :sales

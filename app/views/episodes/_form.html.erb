@@ -1,0 +1,70 @@
+<%= form_for @episode, remote: true, :html => {:id => 'form', :autocomplete => "off"} do |f| %>
+    <fieldset>
+        <legend><%= @episode.new_record? ? "New" : "Edit" %> episode</legend>
+
+        <div class="row">
+            <div class="large-12 columns">
+                <div class="row collapse prefix-radius">
+                    <div class="small-3 columns">
+                      <label for="right-label" class="right inline" style="text-align: center;font-family: 'Exo';padding: 4px;">Name</label>
+                    </div>
+                    <div class="small-9 columns">
+                      <%= f.text_field :name, placeholder: "Title Name" ,content: @episode.name, style: "height: 30px;padding: 4px;" %>
+                    </div>
+                    <div class="small-9 columns ends">
+                      <small class="error" style="display:none;"></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            <div class="row">
+                <div class="large-12 columns">
+                    <div class="row collapse prefix-radius">
+                        <div class="small-3 columns">
+                          <label for="right-label" class="right inline" style="text-align: center;font-family: 'Exo';padding: 4px;">Image</label>
+                        </div>
+                        <div class="small-9 columns">
+                          <%= f.number_field :number ,content: @episode.number, style: "height: 30px;padding: 4px;" %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="large-12 columns">
+                    <div class="row collapse prefix-radius">
+                        <div class="small-3 columns">
+                          <label for="right-label" class="right inline" style="text-align: center;font-family: 'Exo';padding: 4px;">Season</label>
+                        </div>
+                        <div class="small-9 columns">
+                          <%= f.number_field :season , content: @episode.season, style: "height: 30px;padding: 4px;" %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="large-12 columns">
+                    <div class="row collapse prefix-radius">
+                        <div class="small-3 columns">
+                          <label for="right-label" class="right inline" style="text-align: center;font-family: 'Exo';padding: 4px;">Airs on:</label>
+                        </div>
+                        <div class="small-9 columns">
+                          <%= f.date_field :airdate,content: @episode.airdate, style: "height: 30px;padding: 4px;" %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <%= hidden_field_tag :title_id, @episode.title_id %>
+        <div class="row">
+
+        <br>
+
+        <div class="small-4 columns small-offset-4 ends">
+            <%= f.submit  class: "button tiny", style: "border-radius: 3px;" %>
+        </div>
+    </div>
+    </fieldset>
+<% end %>
+

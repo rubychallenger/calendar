@@ -1,0 +1,22 @@
+<div class="modal" style="position: fixed;
+    top: 50%;
+    left: 50%;
+    
+    width: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); 
+    background-color: rgb(55, 55, 55);">
+    <div style="margin: 5px; height: 100%;">
+      <div class="row" style="height: 90%;">
+        <div class="small-12 columns">
+            <%= image_tag @title.picture, class: "small-4", style: "float:left; margin: 5px 10px 0 5px;" %>  
+            <p style="font-weight: bold; font-size: 12px;text-align: center; margin-bottom: 5px;"><%= @title.name %></p>      
+            <%= @title.overview %>
+        </div>
+      </div>
+      <div class="row" style="text-align:center;">
+        <hr style="margin: 10px 0;">  
+        Airs on <%= @title.episodes.first.wday.pluralize %> at <%= @title.episodes.first.airdate.strftime("%H")%>:00
+      </div>
+    </div>
+</div>

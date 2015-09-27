@@ -1,0 +1,50 @@
+<%= render 'calendar/header' %>
+
+<hr>
+<div class="row">
+	<div class="small-4 columns">
+		<div class="row" style="margin-top:30px;">
+			<div class="view"><%= image_tag @title.picture %></div>
+		</div>
+
+		<div class="row" style="margin-top: 10px;">
+			<%= link_to "Edit", edit_title_path(@title) , :remote => true, class: "button tiny", style: "margin-bottom: 5px;"%> |
+			<%= link_to "Delete", @title ,method: :delete , data: { confirm: 'Are you sure?' },class: "button tiny", style: "margin-bottom: 5px;"%> |
+			<%= link_to "New Episode", new_episode_path(title_id: 2), :remote => true ,class: "button tiny", style: "margin-bottom: 5px;"%> </br>
+		</div>
+		<div class="row">
+			<%= link_to "Refresh info from API", refresh_API_url(id: @title.id), remote: true ,class: "button tiny", style: "margin-bottom: 5px;"%>
+		</div>
+	</div>
+	
+	<div class="small-7 columns small-offset-1">
+		<h1>Episodes:</h1>
+		<% const = -1 %>
+		<% @title.episodes.order(:airdate).each do |ep| %>
+			<div class="row">
+			<% if ep.season != const %>
+
+
+				<div class="small-12 columns" style="font-weight: bold; text-align: center;font-size: 1.2em;"> Season: <%= ep.season %> </div>
+				<hr>
+				<% const = ep.season %>
+			<% end %>
+				<div class="small-3 columns"> Episode <%= ep.number %> </div>
+				<div class="small-1 columns"> <%= link_to "edit", edit_episode_path(ep), :remote => true, class: "button tiny", style: "margin-bottom: 0; padding: 5px;" %> </div>
+				<div class="small-4 columns"> <%= ep.name %></div> 
+				<div class="small-4 columns"> <%= ep.airdate.strftime("%m-%d-%Y") %> </div>
+			</div>
+
+		<% end %>
+	</div>
+</div>
+
+<div class="loginscr">
+<div class="bod"></div>
+<div class="headerr edit">
+    <div><span></span></div></br>
+</div>
+<br>
+<div class="login">
+</div>
+</div>

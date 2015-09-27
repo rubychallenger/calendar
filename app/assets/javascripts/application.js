@@ -15,3 +15,15 @@
 //= require jquery.turbolinks
 //= require jquery.fittext
 //= require_tree .
+
+
+
+if (navigator.userAgent.toLowerCase().indexOf("chrome") >= 0) {
+	$(window).load(function(){
+	    $('input:-webkit-autofill').each(function(){
+	        var text = $(this).val();
+	        var name = $(this).attr('name');
+	        $(this).after(this.outerHTML).remove();
+	        $('input[name=' + name + ']').val(text);
+	    });
+});}

@@ -15,8 +15,12 @@
  */
 @import 'foundation-icons';
 
-.cvindex {  
-    $row-width: rem-calc(1000);
+
+.wrap {
+  position:relative;
+}
+.wrap span, .loginscr {
+  display:none;
 }
 
 .rightlink:hover {
@@ -75,6 +79,7 @@
   max-height: 115px;
   margin: 0 auto;
   overflow: hidden;
+
 }
 .imagegrid li div img {
   //margin-top:7px;
@@ -82,12 +87,11 @@
   height: auto;
   position: relative;
   overflow: hidden;
-
 }
 .imagegrid li div img:hover {
   opacity: 1;
- -webkit-transform: scale(1.1);
-  transition: all 0.3s ease-in-out;
+ //-webkit-transform: scale(1.0);
+  //transition: all 0.3s ease-in-out;
 }
 
 .imagemenu {

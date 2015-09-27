@@ -1,0 +1,38 @@
+<%= render 'calendar/header' %>
+
+<hr>
+<div class="row" style="text-align:center;">
+  <%= button_to "Add new title", new_title_path, method: :get, remote: true, class: "button" ,style: "font-size: 1.2em; font-weight: bold;" %>
+</div>
+
+<div class="row">
+  <div class="small-12 columns">
+    <ul class="small-block-grid-3 medium-block-grid-4 large-block-grid-5 imagegrid">
+      <% @titles.each do |title| %>
+        <li class="titleadmin" >
+          <div class='view effect' style="width: 95%; height: 150px;">
+            <%= image_tag title.picture, style: "height: 100%;" %>
+
+            <%= link_to title do %>
+            <div class='mask'></div>
+            
+              <div class="content" style="top: 35%;">
+                 <p class= "info" style="font-weight: bold; font-size: 1.5em;"><%= title.name %></p>
+              </div>
+            <% end %>
+          </div>  
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<div class="loginscr">
+<div class="bod"></div>
+<div class="headerr edit">
+    <div><span></span></div></br>
+</div>
+<br>
+<div class="login">
+</div>
+</div>

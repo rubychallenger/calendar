@@ -1,0 +1,49 @@
+<div class="loginscr">
+  <div class="bod"></div>
+  <br>
+  <div class="login">
+      
+   <%= form_for(devise_resource, :as => devise_resource_name, :html => {:id => 'login_form', :autocomplete => "off"}, :url => admin_session_path, :remote => :true, :format => :json) do |f| %>
+  <fieldset>
+    <legend>Sign In</legend>
+    <div class="row">
+      <div class="large-12 columns">
+
+      <div class="row collapse prefix-radius">
+        <div class="small-3 columns">
+          <label for="right-label" class="right inline" style="text-align: center;font-family: 'Exo';padding: 4px;">Login</label>
+        </div>
+        <div class="small-9 columns">
+          <%= f.text_field :login, autofocus: true, autocomplete: :off, placeholder: "admin", style: "height: 30px;padding: 4px;" %>
+        </div>
+        <div class="small-9 columns ends">
+          <br>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+         <div class="row collapse prefix-radius">
+        <div class="small-3 columns">
+          <label for="right-label" class="right inline" style="text-align: center;font-family: 'Exo';padding: 4px;">Password</label>
+        </div>
+        <div class="small-9 columns">
+          <%= f.password_field :password, autocomplete: :off, placeholder: "admin", style: "height: 30px;padding: 4px;" %>
+        </div>
+        <div class="small-9 columns ends">
+          <small class="error invalidlogin" style="display:none;"></small>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="row">
+      <br>
+      <div class="small-3 columns small-offset-5 ends">
+        <%= f.submit "Sign in", class: "button tiny", style: "border-radius: 3px;" %>
+      </div>
+    </div>
+  </fieldset>
+<% end %>
+  </div>
+</div>

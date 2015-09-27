@@ -1,14 +1,15 @@
 <%= render 'header' %>
-
+<div class="row">
+  <div class="header">
+    <%= link_to "", calendar_path(month: set_month_prev, year: set_year_prev), class: "fi-arrow-left" %>  <%=  Date::MONTHNAMES[@month] %> <%= @year %>  <%= link_to "", calendar_path(month: set_month_next, year: set_year_next), class: "fi-arrow-right" %>
+  </div>
+</div>
 <div class="row"> <hr> </div> 
+
 <div class="row">
   <div class="small-12 columns">
 
-    <div class="show-for-large-up large-2 large-push-10 columns">
-      <%= render 'recent' %>   
-    </div>
-
-    <div class="show-for-medium-up medium-12 large-10 large-pull-2 columns">
+    <div class="show-for-medium-up medium-12 large-12 columns">
       <%= render 'calendar' %>
     </div>
 
@@ -29,7 +30,7 @@
           <div class="small-12 columns">
             <div class="calsmall">
                 <p class="<%= ep.title.name %> <%= "highlighted" if cookies[:highlight] && cookies[:highlight].split(',').include?(ep.title.name) %>">
-                  <span style="font-weight: 700;line-height: 1.5em;"><%= ep.title.name %> </span>
+                  <span style="font-weight: bold ;line-height: 1.2em;"><%= ep.title.name %> </span>
                   <%= link_to "","/set_cookies/#{ep.title.name}",remote: true, class: set_icon(ep) %> </br> 
                   <span style="line-height: .9em;font-size: 90%;"> Episode <%= ep.number %></span>
                   <span style="float:right;padding-right: 3px;font-size: 80%;"><%= ep.airdate.strftime("%H:%M") %></span> 
@@ -43,3 +44,22 @@
 
   </div>
 </div>
+
+<div class="row"> <hr> </div> 
+
+<div class="wrap">
+  <span id="tooltip-span">
+  </span>
+</div>
+
+<div class="row">
+  <div class="show-for-large-up small-12 columns">
+    <%= render 'recent' %>   
+  </div>
+</div>
+
+
+
+<%= render 'devise/sessions/new' %>
+
+    

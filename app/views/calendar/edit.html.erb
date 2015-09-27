@@ -1,0 +1,28 @@
+<div class="row">
+	<div class="small-4 columns">
+		<div class="row">
+			<%= image_tag @title.picture %> </br>
+			<%= link_to "Edit", show_form_title_url(id: @title.id), :remote => true, style: "font-size: 20px;"%> |
+			<%= link_to "Delete", "#", style: "font-size: 20px;"%> |
+			<%= link_to "New Episode", show_form_episode_url(id: nil, title_id: @title.id), :remote => true , style: "font-size: 20px;"%> </br>
+			<%= link_to "Refresh info from API", refresh_API_url(id: @title.id),remote: true ,style: "font-size: 20px;"%>
+		</div>
+	</div>
+
+	<div class="small-8 columns">
+		<h1>Episodes:</h1>
+		<% const = -1 %>
+		<% @title.episodes.order(:airdate).each do |ep| %>
+			<div class="row">
+			<% if ep.season != const %>
+				<div class="small-12 columns" style="font-weight: bold;"> Season: <%= ep.season %> </div>
+				<% const = ep.season %>
+			<% end %>
+				<div class="small-4 columns"> Episode <%= ep.number %> <%= link_to "edit", show_form_episode_url(id: ep.id), :remote => true %> </div>
+				<div class="small-4 columns"> <%= ep.name %></div> 
+				<div class="small-4 columns"> Airdate: <%= ep.airdate.strftime("%m-%d-%Y") %> </div>
+			</div>
+		<% end %>
+	</div>
+</div>
+<div class="editwrapper"></div>

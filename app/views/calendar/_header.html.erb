@@ -4,15 +4,23 @@
 
     <span class="timezoneselect" style="display:none; margin-top: 5px; width: 100%;">
       <%= form_tag '/select_time_zone', method: :post, :id => "form" do %> 
-     <%= time_zone_select :person, :time_zone,nil,{default: cookies[:time_zone] ? cookies[:time_zone] : "UTC"}, { :style => "width: 100%;height: 30px;padding: 0;",onchange: "$('#form').submit();" } %>
+     <%= time_zone_select :person, :time_zone,nil,{default: cookies[:time_zone] ? cookies[:time_zone] : "UTC"}, { :style => "width: 100%;height: 30px;padding: 0; background-color: white;",onchange: "$('#form').submit();" } %>
      <% end %>
     </span>
   </div>
 
-  <div class="large-6 medium-4 small-12 columns end">
-    <div class="header">
-      <%= Date.today.strftime("%B") %> <%= Date.today.year %> 
-    </div>
+  <div class="large-6 medium-4 small-12 columns" style="text-align: center;">
+    <% if admin_signed_in? %>
+      <%= button_to 'Admin page', titles_path, method: :get, class: "button tiny" %>
+    <% end %>
   </div>
 
+  <div class="large-3 medium-4 hide-for-small-only columns ends">
+    <% unless admin_signed_in? %>
+      <a href="#" class="btnreveal button tiny" style="float:right; font-size: 15px; color: white;">Sign in!</a>
+    <% else %>
+      <%= link_to 'Sign out!', destroy_admin_session_path, method: :delete, class: "button tiny", style: "float:right;" %>
+    <% end %>
+    
+  </div>
 </div>

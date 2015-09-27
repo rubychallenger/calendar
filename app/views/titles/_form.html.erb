@@ -1,0 +1,72 @@
+<%= form_for @title, remote: true, :html => {:id => 'form', :autocomplete => "off"} do |f| %>
+    <fieldset>
+        <legend><%= @title.new_record? ? "Create" : "Update" %> title</legend>
+
+        <div class="row">
+            <div class="large-12 columns">
+                <div class="row collapse prefix-radius">
+                    <div class="small-3 columns">
+                      <label for="right-label" class="right inline" style="text-align: center;font-family: 'Exo';padding: 4px;">Name</label>
+                    </div>
+                    <div class="small-9 columns">
+                      <%= f.text_field :name, placeholder: "Title Name" ,content: @title.name, style: "height: 30px;padding: 4px;" %>
+                    </div>
+                    <div class="small-9 columns ends">
+                      <small class="error" style="display:none;"></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <% unless @title.new_record? %>
+            <div class="row">
+                <div class="large-12 columns">
+                    <div class="row collapse prefix-radius">
+                        <div class="small-3 columns">
+                          <label for="right-label" class="right inline" style="text-align: center;font-family: 'Exo';padding: 4px;">Image</label>
+                        </div>
+                        <div class="small-9 columns">
+                          <%= f.text_field :picture,content: @title.picture, style: "height: 30px;padding: 4px;" %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="large-12 columns">
+                    <div class="row collapse prefix-radius">
+                        <div class="small-3 columns">
+                          <label for="right-label" class="right inline" style="text-align: center;font-family: 'Exo';padding: 4px;">Overview</label>
+                        </div>
+                        <div class="small-9 columns">
+                          <%= f.text_area :overview, content: @title.overview, style: "height: 30px;padding: 4px;" %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="large-12 columns">
+                    <div class="row collapse prefix-radius">
+                        <div class="small-3 columns">
+                          <label for="right-label" class="right inline" style="text-align: center;font-family: 'Exo';padding: 4px;">SeriesID</label>
+                        </div>
+                        <div class="small-9 columns">
+                          <%= f.text_field :Api_id,content: @title.Api_id, style: "height: 30px;padding: 4px;" %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        <% end %>
+        <div class="row">
+
+        <br>
+
+        <div class="small-4 columns small-offset-4 ends">
+            <%= f.submit  class: "button tiny", style: "border-radius: 3px;" %>
+        </div>
+    </div>
+    </fieldset>
+<% end %>
+
