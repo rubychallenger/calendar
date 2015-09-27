@@ -23,7 +23,7 @@ class CalendarController < ApplicationController
         @eps[index].delete(nil)
     end
 
-    @recent = Episode.where("airdate <= '%s' and airdate >= '%s' ",Time.now, Time.now - 1.month).order(:airdate).last(6).reverse
+    @recent = Episode.where("airdate <= '%s' and airdate >= '%s' ",Time.now, Time.now - 1.month).order(:airdate).last(5).reverse
 
   end
 

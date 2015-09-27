@@ -70,9 +70,13 @@ class TitlesController < ApplicationController
     apikey = "40B65899C751376C"
     response = HTTParty.get("http://thetvdb.com/api/GetSeries.php?seriesname=#{@title.name.gsub(' ','%20')}").to_hash
 
-    resp = response["Data"]["Series"].is_a?(Hash) ? response["Data"]["Series"] : response["Data"]["Series"].select {|series| series["SeriesName"] == "#{@title.name}"}[0]
+    puts response.empty?
+    puts response
+    unless response.empty?
+      resp = response["Data"]["Series"].is_a?(Hash) ? response["Data"]["Series"] : response["Data"]["Series"].select {|series| series["SeriesName"] == "#{@title.name}"}[0]
 
-    @title.update_attribute( :Api_id, resp["seriesid"]) if @title.Api_id == nil
+      @title.update_attribute( :Api_id, resp["seriesid"]) if @title.Api_id == nil
+    end
 
     full_response = HTTParty.get("http://thetvdb.com/api/#{apikey}/series/#{@title.Api_id}/all/en.xml").to_hash["Data"]
 
@@ -112,6 +116,6 @@ class TitlesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def title_params
-      params.require(:title).permit(:name, :picture)
+      params.require(:title).permit(:name, :picture, :Api_id)
     end
 end
