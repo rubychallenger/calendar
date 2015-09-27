@@ -15,7 +15,10 @@
  */
 @import 'foundation-icons';
 
-
+select option {
+  background-color: black;
+  color: white;
+}
 .wrap {
   position:relative;
 }
