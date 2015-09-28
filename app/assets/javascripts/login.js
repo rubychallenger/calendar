@@ -12,7 +12,7 @@ $(document).on('submit', '#login_form , #form', function(e) {
 });
 
 $(document).ready(function() {
-    $('.titlename #span, .titlename span').hover(function(){ 
+    $('.titlename #span').hover(function(){ 
                 $.ajax("show_popup/" + $(this).parent().attr('id'));
                 $('#tooltip-span').css({
                     "display":"block",
