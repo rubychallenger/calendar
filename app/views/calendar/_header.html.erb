@@ -1,3 +1,4 @@
+<% content_for :title, "Admin |" if controller.controller_name != 'calendar'%>
 <div class="row">
   <div class="small-12 medium-4 large-3 columns">
     <span class="fi-list timezone" style="padding: 0;cursor:pointer;font-size: 1.2em;margin-top: 5px;"> Timezone: CET <%= "+" if Time.zone.utc_offset>0 %><%= Time.zone.utc_offset/3600 %> (<%=Time.zone.now.strftime("%H:%M") %>)</span> 
