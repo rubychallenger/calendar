@@ -14,4 +14,6 @@
 //= require jquery_ujs
 //= require jquery.turbolinks
 //= require jquery.fittext
+//= require foundation
 //= require_tree .
+$(function(){ $(document).foundation(); });

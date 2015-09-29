@@ -10,6 +10,13 @@ class CalendarController < ApplicationController
   end
 
   def calendar
+    i = request.remote_ip
+    #i = request.env['REMOTE_ADDR']
+    puts i
+
+    v = Visitor.find_or_create_by(ip: i)
+    v.update_attribute(:count, v.count + 1)
+
     @eps = []
 
     @month = params[:month].is_a?(NilClass) ? Time.now.month : params[:month].to_i
@@ -19,9 +26,9 @@ class CalendarController < ApplicationController
 
     #puts @month
 
-    @this_month_episodes = Episode.all.select {|ep| ep.airdate.month == @month and ep.airdate.year == @year }
+    this_month_episodes = Episode.all.select {|ep| ep.airdate.month == @month and ep.airdate.year == @year }
     (1..31).each do |index|
-        @eps[index] = @this_month_episodes.select { |ep| ep.airdate.day == index }
+        @eps[index] = this_month_episodes.select { |ep| ep.airdate.day == index }.sort! {|a,b| a.airdate <=> b.airdate }
         @eps[index].delete(nil)
     end
 

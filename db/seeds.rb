@@ -6,3 +6,4 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 Admin.create({email:'admin@admin.com',username:'admin',password:'admin'})
+Episode.create({airdate:Time.now, name: "DUMMYTESTEP", season: 0, number: 0})

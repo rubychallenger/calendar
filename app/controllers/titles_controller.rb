@@ -4,6 +4,7 @@ class TitlesController < ApplicationController
   # GET /titles
   def index
     @titles = Title.all
+    @visitors = Visitor.all
   end
 
   # GET /titles/1
@@ -85,7 +86,7 @@ class TitlesController < ApplicationController
 
     full_response = HTTParty.get("http://thetvdb.com/api/#{apikey}/series/#{@title.Api_id}/all/en.xml").to_hash["Data"]
 
-    @title.update_attribute(:name, full_response["Series"]["SeriesName"].gsub(/[^a-zA-Z ]/,''))
+    @title.update_attribute(:name, full_response["Series"]["SeriesName"].gsub(/[^a-zA-Z ]\s$/,''))
     @title.update_attribute(:picture, "http://thetvdb.com/banners/" + full_response["Series"]["fanart"])
     @title.update_attribute(:overview, full_response["Series"]["Overview"])
     
