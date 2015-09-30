@@ -6,7 +6,7 @@
 
   <ul id="hover" class="f-dropdown" data-dropdown-content>
     <% @visitors.each do |visit| %>
-      <li style="color:black;"><%= visit.ip %></li>
+      <li style="color:black;"><%= visit.ip %> | <%= visit.updated_at %></li>
     <% end %>
   </ul>
   <%= button_to "Add new title", new_title_path, method: :get, remote: true, class: "button" ,style: "font-size: 1.2em; font-weight: bold;" %>
