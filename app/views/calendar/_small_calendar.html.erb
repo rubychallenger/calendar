@@ -1,0 +1,31 @@
+      <div class="row">
+        <div class= "small-12 columns" style="clear: right; display: block;">          
+          <div class="header" style="clear: right; display: block;">
+             &nbsp;<%= link_to "", calendar_path(move_day(-1)), class: "fi-arrow-left" %>  <%= @day %>, <%= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][@wday.to_i] %>  <%= link_to "", calendar_path(move_day(+1)), class: "fi-arrow-right" %>
+          </div>         
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-12 columns">
+          
+          <div class="small-7 columns small-centered" style="height: 50px;">
+            <div class="row">
+      <% @eps[@day].each_with_index do |ep,index|%>
+      
+        <div class="small-12 columns">
+        <div class="<%= ep.title.name.gsub(' ','') %> <%= "highlighted" if cookies[:highlight] && cookies[:highlight].split(',').include?(ep.title.name) %>" style="<%= "border-bottom: 1px solid black;" if @eps[@day].size - 1 == index %> <%= set_background(index) %>"> 
+          <div id="<%=ep.title.name.gsub(' ','_')%>" class="titlename" style="padding: 5px; border-radius: 5px;" >
+            <span id="span" style="font-weight: 700;line-height: 1.5em;"><%= ep.title.name %></span>
+            <%= link_to "","/set_cookies/#{ep.title.name}", remote: true, class: set_icon(ep), title: "Add to favourites", style: "color: white;" %> 
+            <span style="line-height: 1.5em; float: right; vertical-align: center;"> Ep: <%= ep.number %> (<%= ep.airdate.strftime("%H:%M") %>)</span>
+          </div>
+            
+          </div>
+        </div>
+        
+      <% end %>
+      </div>
+      </div>
+    </div>
+  </div>
