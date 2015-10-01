@@ -1,14 +1,17 @@
 <%= render 'calendar/header' %>
 
 <hr>
+
 <div class="row" style="text-align:center;">
-  <a href="#" data-dropdown="hover" data-options="is_hover:true; hover_timeout:100" class="left" style="color: white; font-size: 15px;">Unique visitors: <%= @visitors.last.id %></a>
+  <% unless @visitors.empty? %>
+  <a href="#" data-dropdown="hover" data-options="is_hover:true; hover_timeout:100" class="left" style="color: white; font-size: 15px;">Unique visitors: <%= @visitors.last.id  %></a>
 
   <ul id="hover" class="f-dropdown" data-dropdown-content>
     <% @visitors.each do |visit| %>
-      <li style="color:black;"><%= visit.ip %> | <%= visit.updated_at %></li>
+      <li style="color:black;"><%= link_to "#{visit.ip} | #{visit.updated_at}", visit, method: :delete %></li>
     <% end %>
   </ul>
+  <% end %>
   <%= button_to "Add new title", new_title_path, method: :get, remote: true, class: "button" ,style: "font-size: 1.2em; font-weight: bold;" %>
 </div>
 

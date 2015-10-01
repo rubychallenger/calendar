@@ -60,6 +60,10 @@ class CalendarController < ApplicationController
     redirect_to '/calendar'
   end 
 
+  def visitor_destroy
+  
+  end
+
   protected
 
   def time_zone_set

@@ -1,7 +1,4 @@
 $ ->
-  $(".cal p").fitText(0.6,{minFontSize:"0.2em",maxFontSize:"16px"})
-  $(".header").fitText(0.6,{minFontSize:"0.2em",maxFontSize:"40px"})
-  
   $(".highlight").click ->
     $('.' + $(this).parent().parent().attr('class').split(' ').shift()).toggleClass("highlighted")
     $('.' + $(this).parent().parent().attr('class').split(' ').shift()).children().children(".highlight").toggleClass("fi-plus").toggleClass("fi-minus")
