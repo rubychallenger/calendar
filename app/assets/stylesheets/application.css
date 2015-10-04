@@ -10,9 +10,19 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *= require foundation_and_overrides
+ *= require jquery-ui/datepicker
  *= require_self
  *= require_tree
  */
 @import 'foundation-icons';
 
 @import url(//fonts.googleapis.com/css?family=Exo:100,200,400);
+
+.ui-datepicker-trigger {
+	margin: 0;
+	padding:7px 20px;
+	border: none;
+}
+.ui-datepicker-trigger:focus {
+	outline: none;
+	}

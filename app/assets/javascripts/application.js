@@ -14,5 +14,27 @@
 //= require jquery_ujs
 //= require jquery.turbolinks
 //= require foundation
+//= require jquery-ui/datepicker
+//= require jquery-ui/effect-drop
 //= require_tree .
-$(function(){ $(document).foundation(); });
+$(function(){ 
+	$(document).foundation(); 
+	$("#setdate").datepicker( {
+		dateFormat: "yy-mm-dd",
+
+		showOtherMonths: true,
+      	selectOtherMonths: true,
+
+		showAnim: 'drop',
+		showOn: "button",
+		buttonText: "<i class='fi-calendar'></i>"
+	});
+
+	$("#setdate").change(function() {
+		year = $(this).val().slice(0,4);
+		month = $(this).val().slice(5,7);
+		day = $(this).val().slice(8);
+		window.location.href = '/calendar?month='+month+'&year='+year+'&day='+day;
+	})
+});
+

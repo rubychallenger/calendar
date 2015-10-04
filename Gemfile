@@ -18,10 +18,9 @@ source 'https://rubygems.org'
 # gem 'capistrano-rails', group: :development
 
 
-group :development, :test do
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
-  gem 'rspec-rails', '~> 3.0'
+group :test do
+  gem 'rspec', '~> 3.3.0'
+  gem 'capybara', '~> 2.5.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -42,8 +41,10 @@ group :production do
 	gem 'rails_12factor'
 end
 
+
 gem 'rails', '4.2.0'
 gem 'foundation-rails'
 gem 'faker'
 gem 'devise', '3.5.2'
 gem 'httparty'
+gem 'jquery-ui-rails'

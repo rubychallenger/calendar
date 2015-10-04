@@ -1,24 +1,25 @@
 <%= render 'header' %>
 <div class="row">
   <div class="header">
-    <%= link_to "", calendar_path(month: set_month_prev, year: set_year_prev), class: "fi-arrow-left" %>  <%=  Date::MONTHNAMES[@month] %> <%= @year %>  <%= link_to "", calendar_path(month: set_month_next, year: set_year_next), class: "fi-arrow-right" %>
+    <%= link_to "", calendar_path(month: set_month_prev, year: set_year_prev), class: "fi-arrow-left" %>  <span id="month"><%=  Date::MONTHNAMES[@month] %></span> <span id="year"><%= @year %></span>  <%= link_to "", calendar_path(month: set_month_next, year: set_year_next), class: "fi-arrow-right" %>
   </div>
 </div>
 <div class="row"> <hr> </div> 
 
 <div class="row">
   <div class="small-12 columns">
+ 
+      <div class="show-for-medium-up medium-12 columns">
+        <%= render 'calendar' %>
+      </div>
 
-    <div class="show-for-medium-up medium-12 large-12 columns">
-      <%= render 'calendar' %>
-    </div>
+      <div class="show-for-small-only small-12 columns">
+        <%= render 'small_calendar'%>
+      </div>
 
-    <div class="show-for-small-only small-12 columns">
-      <%= render 'small_calendar'%>
   </div>
 </div>
 
-<div class="row"> <hr> </div> 
 
 <div class="wrapp">
   <span id="tooltip-span">
