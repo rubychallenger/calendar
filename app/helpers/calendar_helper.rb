@@ -13,16 +13,7 @@ module CalendarHelper
 
     def set_month_prev
         (@month == 1) ? 12 : (@month - 1)
-    end
-
-    def move_day int
-        unless (Time.now.month == DateTime.strptime("#{@day}-#{@month}-#{@year}","%d-%m-%Y").month)
-            date = DateTime.strptime("#{@day}-#{@month}-#{@year}","%d-%m-%Y")+int.days
-            calendar_path({year: date.year, month: date.month, day: date.day, wday: date.strftime("%w")})
-        else
-            '#'
-        end
-    end
+    end 
 
     def set_background(index)
         if index % 2 == 0
