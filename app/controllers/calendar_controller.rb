@@ -1,8 +1,12 @@
 class CalendarController < ApplicationController
   before_action :time_zone_set, only: :calendar
-  
+    
   def nil.split *args
     nil
+  end
+
+  def nil.include? *args
+    false
   end
 
   def calendar
