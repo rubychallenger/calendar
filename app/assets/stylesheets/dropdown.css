@@ -1,0 +1,41 @@
+#hover
+{
+	list-style:none;
+	position:relative;
+	float:left;
+	margin:0;
+	padding:0
+}
+
+
+#hover ul
+{
+	display:none;
+	position:absolute;
+	top:100%;
+	left:0;
+	background:white;
+	padding:0
+}
+
+#hover ul li
+{
+	float:none;
+	white-space: nowrap;
+	font-size:15px;
+}
+
+#hover ul a
+{
+	padding:10px 7px;
+}
+
+#hover:hover > ul
+{
+	display:block
+}
+
+#hover ul li:hover
+{
+	background: #eee;
+}

@@ -5,13 +5,14 @@
 <div class="row" style="text-align:center;">
   <div class='small-2 columns'>
     <% unless @visitors.empty? %>
-      <a href="#" data-dropdown="hover" data-options="is_hover:true; hover_timeout:100" class="left" style="color: white; font-size: 15px;">Unique visitors: <%= @visitors.count %></a>
-
-      <ul id="hover" class="f-dropdown" data-dropdown-content>
-        <% @visitors.each do |visit| %>
-          <li style="color:black;"><%= link_to "#{visit.ip} | #{visit.updated_at}", visit, method: :delete %></li>
-        <% end %>
-      </ul>
+    <div class="nav-drop" id="hover">
+      <a href="#" class="left" style="color: white; font-size: 15px;">Unique visitors: <%= @visitors.count %></a>
+        <ul id="hover">
+          <% @visitors.each do |visit| %>
+            <li style="color:black;"><%= link_to "#{visit.ip} | #{visit.updated_at.strftime("%d.%m %H:%M")}", visit, method: :delete %></li>
+          <% end %>
+        </ul>
+      </div>
     <% end %>
   </div>
 

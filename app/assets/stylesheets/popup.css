@@ -21,9 +21,4 @@
 	padding: 10px;
 	z-index: 2;
 }
-input,label {
-	font-family: 'Arial';
-}
-legend {
-	font-family: 'Arial';
-}
+
