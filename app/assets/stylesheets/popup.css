@@ -14,7 +14,7 @@
 }
 
 .login{
-	position: absolute;
+	position: fixed;
 	top: calc(50% - 100px);
 	left: calc(50% - 175px);
 	width: 350px;
