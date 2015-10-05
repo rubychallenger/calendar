@@ -13,12 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.turbolinks
-//= require foundation
 //= require jquery-ui/datepicker
 //= require jquery-ui/effect-drop
 //= require_tree .
-$(function(){ 
-	$(document).foundation(); 
+$(function(){  
 	$("#setdate").datepicker( {
 		dateFormat: "yy-mm-dd",
 
