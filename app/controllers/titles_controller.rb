@@ -93,7 +93,7 @@ class TitlesController < ApplicationController
     series_response = full_response["Episode"].select {|ep| ep["Combined_season"].to_i > 0 }
 
     series_response.each_with_index do |ep,index|
-      episode = Episode.create_with(airdate: DateTime.strptime( (ep["FirstAired"] || series_response[index-1]["FirstAired"]) + " " + full_response["Series"]["Airs_Time"], '%Y-%m-%d %I:%M %p' )).find_or_create_by(name: ep["EpisodeName"]) 
+      episode = Episode.create_with(airdate: DateTime.strptime( "#{ep["FirstAired"]||series_response[0]["FirstAired"]}" + " " + full_response["Series"]["Airs_Time"], '%Y-%m-%d %I:%M %p' )).find_or_create_by(name: ep["EpisodeName"]) 
       episode.update_attribute(:season, ep["Combined_season"].to_i)
       episode.update_attribute(:number, ep["Combined_episodenumber"].to_i)
       episode.title = @title

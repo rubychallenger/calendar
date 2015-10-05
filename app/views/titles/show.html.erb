@@ -32,7 +32,7 @@
 				<div class="small-3 columns"> Episode <%= ep.number %> </div>
 				<div class="small-1 columns"> <%= link_to "edit", edit_episode_path(ep), :remote => true, class: "button tiny", style: "margin-bottom: 0; padding: 5px;" %> </div>
 				<div class="small-4 columns"> <%= ep.name %></div> 
-				<div class="small-4 columns"> <%= ep.airdate.strftime("%m-%d-%Y") %> </div>
+				<div class="small-4 columns"> <%= ep.airdate.strftime("%m-%d-%Y") == "10-10-2099" ? "Not yet announced" : ep.airdate.strftime("%m-%d-%Y") %> </div>
 			</div>
 
 		<% end %>
