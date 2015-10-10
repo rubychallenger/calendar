@@ -9,10 +9,8 @@ class CalendarController < ApplicationController
     false
   end
 
-  def calendar
+  def index
     i = request.remote_ip
-    #i = request.env['REMOTE_ADDR']
-    puts request.user_agent
 
     v = Visitor.find_or_create_by(ip: i)
     v.update_attribute(:count, v.count + 1)
@@ -53,18 +51,6 @@ class CalendarController < ApplicationController
         format.js
     end
   end
-
-  def set_cookies
-    arr = []
-    arr = cookies[:highlight].split(',') if cookies[:highlight]
-    if arr.include?(params[:name])
-      arr.delete(params[:name])
-    else
-      arr << params[:name]
-    end
-    cookies[:highlight] = (arr.class == Array) ? arr.join(',') : ''
-    redirect_to '/calendar'
-  end 
 
   protected
 

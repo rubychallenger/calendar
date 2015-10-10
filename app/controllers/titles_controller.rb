@@ -38,8 +38,6 @@ class TitlesController < ApplicationController
         format.js {  render inline: "location.reload();" }
       end
     else
-      puts 'hahah'
-      puts @title.errors[:name]
       respond_to do |format|
         format.html { redirect_to :back, notice: 'error in create'}
         format.js { render json: @title.errors, status: :unprocessable_entity }
@@ -67,44 +65,11 @@ class TitlesController < ApplicationController
 
 
   def refresh_API
-    require 'httparty'
-    apikey = "40B65899C751376C"
-    response = HTTParty.get("http://thetvdb.com/api/GetSeries.php?seriesname=#{@title.name.gsub(' ','%20')}").to_hash
-
-    #puts response
-    unless response.empty?
-      resp = response["Data"]["Series"].is_a?(Hash) ? response["Data"]["Series"] : response["Data"]["Series"].select {|series| series["SeriesName"] == "#{@title.name}" }[0]
-      
-      if resp.is_a? NilClass
-        resp = response["Data"]["Series"].delete_if {|series| series["FirstAired"].is_a? NilClass }.max_by do |series|
-          DateTime.strptime((series["FirstAired"]),"%Y-%m-%d")
-        end
-      end
-
-      @title.update_attribute( :Api_id, resp["seriesid"]) if @title.Api_id == nil
-    end
-
-    full_response = HTTParty.get("http://thetvdb.com/api/#{apikey}/series/#{@title.Api_id}/all/en.xml").to_hash["Data"]
-
-    @title.update_attribute(:name, full_response["Series"]["SeriesName"].gsub(/[^a-zA-Z ]\s$/,''))
-    @title.update_attribute(:picture, "http://thetvdb.com/banners/" + full_response["Series"]["fanart"])
-    @title.update_attribute(:overview, full_response["Series"]["Overview"])
-    
-    series_response = full_response["Episode"].select {|ep| ep["Combined_season"].to_i > 0 }
-
-    series_response.each_with_index do |ep,index|
-      episode = Episode.create_with(airdate: DateTime.strptime( "#{ep["FirstAired"]||series_response[0]["FirstAired"]}" + " " + full_response["Series"]["Airs_Time"], '%Y-%m-%d %I:%M %p' )).find_or_create_by(name: ep["EpisodeName"]) 
-      episode.update_attribute(:season, ep["Combined_season"].to_i)
-      episode.update_attribute(:number, ep["Combined_episodenumber"].to_i)
-      episode.title = @title
-      episode.update_attribute(:airdate, DateTime.strptime( (ep["FirstAired"] || "2099-10-10") + " " + full_response["Series"]["Airs_Time"], '%Y-%m-%d %I:%M %p' ))
-      
-    end
+    @title.refresh_from_API(Rails.application.secrets.TVDB_apikey)
 
     respond_to do |format|
       format.js {render inline: "location.reload();" }
-    end
-    
+    end  
   end
 
   def show_popup
@@ -115,6 +80,18 @@ class TitlesController < ApplicationController
     end
   end
 
+  def set_cookies
+    arr = []
+    arr = cookies[:highlight].split(',') if cookies[:highlight]
+    if arr.include?(params[:name])
+      arr.delete(params[:name])
+    else
+      arr << params[:name]
+    end
+    cookies[:highlight] = (arr.class == Array) ? arr.join(',') : ''
+    redirect_to '/calendar'
+  end 
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_title

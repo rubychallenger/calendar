@@ -48,7 +48,6 @@ ActiveRecord::Schema.define(version: 20150929201827) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "picture"
     t.string   "Api_id"
     t.text     "overview"
   end

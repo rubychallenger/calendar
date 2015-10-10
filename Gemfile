@@ -17,10 +17,14 @@ source 'https://rubygems.org'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
+end
 
 group :test do
-  gem 'rspec', '~> 3.3.0'
   gem 'capybara', '~> 2.5.0'
+  gem 'selenium-webdriver'
+  gem 'capybara-screenshot'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

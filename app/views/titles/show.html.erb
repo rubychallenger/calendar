@@ -9,11 +9,11 @@
 
 		<div class="row" style="margin-top: 10px;">
 			<%= link_to "Edit", edit_title_path(@title) , :remote => true, class: "button tiny", style: "margin-bottom: 5px;"%> |
-			<%= link_to "Delete", @title ,method: :delete , data: { confirm: 'Are you sure?' },class: "button tiny", style: "margin-bottom: 5px;"%> |
-			<%= link_to "New Episode", new_episode_path(title_id: 2), :remote => true ,class: "button tiny", style: "margin-bottom: 5px;"%> </br>
+			<%= link_to "Delete", @title ,method: :delete , data: { confirm: 'Are you sure?' },class: "button tiny", style: "margin-bottom: 5px;"%>
+			<%= link_to "New Episode", new_title_episode_path(@title), :remote => true ,class: "button tiny", style: "margin-bottom: 5px;"%> </br>
 		</div>
 		<div class="row">
-			<%= link_to "Refresh info from API", refresh_API_url(id: @title.id), remote: true ,class: "button tiny", style: "margin-bottom: 5px;"%>
+			<%= link_to "Refresh info from API", refresh_API_title_path(@title), remote: true ,class: "button tiny", style: "margin-bottom: 5px;"%>
 		</div>
 	</div>
 	
@@ -29,10 +29,18 @@
 				<hr>
 				<% const = ep.season %>
 			<% end %>
-				<div class="small-3 columns"> Episode <%= ep.number %> </div>
-				<div class="small-1 columns"> <%= link_to "edit", edit_episode_path(ep), :remote => true, class: "button tiny", style: "margin-bottom: 0; padding: 5px;" %> </div>
-				<div class="small-4 columns"> <%= ep.name %></div> 
-				<div class="small-4 columns"> <%= ep.airdate.strftime("%m-%d-%Y") == "10-10-2099" ? "Not yet announced" : ep.airdate.strftime("%m-%d-%Y") %> </div>
+				<div class="small-2 columns"> Episode <%= ep.number %> </div>
+				<div class="small-1 columns"> <%= link_to "Delete", [@title,ep], method: :delete, data: {confirm: "Are you sure?"}, class: "button tiny", style: "margin-bottom: 0; padding: 5px;"  %></div>
+				<div class="small-1 columns"> <%= link_to "edit", edit_title_episode_path(@title,ep), :remote => true, class: "button tiny", style: "margin-bottom: 0; padding: 5px;" %> </div>
+
+				<div class="small-4 columns"> <%= ep.name %></div>
+				<div class="small-4 columns">
+					<% if ep.airdate && ep.airdate.strftime("%m-%d-%Y") != "10-10-2099" %>
+						<%= ep.airdate.strftime("%m-%d-%Y") %> 
+					<% else%>
+						Not yet announced
+					<% end %>
+				</div>
 			</div>
 
 		<% end %>

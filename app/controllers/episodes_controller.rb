@@ -1,15 +1,7 @@
 class EpisodesController < ApplicationController
-  before_action :set_episode, only: [:show, :edit, :update, :destroy]
+  before_action :set_episode, only: [:edit, :update, :destroy]
   before_action :authenticate_admin!
-  # GET /episodes
-  def index
-    @episodes = Episode.all
-  end
-
-  # GET /episodes/1
-  def show
-  end
-
+ 
   # GET /episodes/new
   def new
     @title = Title.find(params[:title_id])
@@ -29,7 +21,7 @@ class EpisodesController < ApplicationController
 
   # POST /episodes
   def create
-    @title = Title.find(eval(params[:title_id])[:value])
+    @title = Title.find(params[:title_id])
     @episode = @title.episodes.new(episode_params)
 
     if @episode.save
@@ -38,7 +30,7 @@ class EpisodesController < ApplicationController
         format.js {render inline: "location.reload();" }
       end
     else
-      render :new
+      render :form
     end
   end
 
@@ -57,7 +49,7 @@ class EpisodesController < ApplicationController
   # DELETE /episodes/1
   def destroy
     @episode.destroy
-    redirect_to episodes_url, notice: 'Episode was successfully destroyed.'
+    redirect_to Title.find(params[:title_id])
   end
 
   private
